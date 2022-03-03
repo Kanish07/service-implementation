@@ -1,0 +1,28 @@
+<form #userLogin="ngForm" novalidate>
+    <div class="form-group">
+      <label for="userEmail"><h3 style="color: darkblue">Enter your email</h3></label>
+      <input type="email" class="form-control" name="userEmail" [(ngModel)]="user.userEmail"
+             [ngClass]="{'is-invalid': userEmail?.errors && (userEmail?.touched || userEmail?.dirty),'is-valid': userEmail?.valid }"
+             placeholder="Enter your Email" #userEmail="ngModel" required/>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password"><h3 style="color: darkblue">Password</h3></label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="user.userPassword"
+             [ngClass]="{'is-invalid': password?.errors && (password?.touched || password?.dirty),'is-valid': password?.valid }"
+             placeholder="Enter your password" #password="ngModel" required minlength='5' />
+    </div>
+    <br>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button type="submit" [disabled]="!userLogin.valid"
+              (click)="userlogin(userLogin.value)"
+              class="btn drop1 text-white btn-lg container-fluid"
+              style="background-color: #4154F1">
+        Login
+      </button>
+    </div><br><br>
+    <div *ngIf="errorMessage" class="alert alert-danger text-center d-grid gap-2 col-6 mx-auto">
+      <strong>{{errorMessage}}</strong>
+    </div>
+  </form>
